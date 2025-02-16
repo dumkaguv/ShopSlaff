@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import ProductList from "@/components/ProductList";
 
 const Home: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
       
       <main>
         <Hero />
+        <ProductList />
       </main>
     </>
   );

@@ -4,7 +4,7 @@ import STATUSES from "@/constants/statuses";
 import { fetchCategories } from "./asyncActions";
 import CategoryType from "@/types/CategoryType";
 
-type CategoryState = {
+export type CategoryState = {
   data: CategoryType[];
   status: STATUSES;
 };
