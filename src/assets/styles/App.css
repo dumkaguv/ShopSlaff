@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  --breakpoint-2xl: 1280px;
+  --bg-color: #212123;
+
+  --color-light: #f6f6f7;
+
+  --color-dark: #191919;
+
+  --color-gray-1: #576067;
+  --color-gray-2: #616e74;
+  --color-gray-3: #b8b8b8;
+
+  --color-accent-light: #8b57c6;
+  --color-accent-dark: #6c3eb8;
+  --color-accent-hover: #9c57eb;
+}
+
+@layer base {
+  body {
+    @apply bg-(--bg-color);
+    @apply text-(--color-light);
+    @apply font-medium;
+    font-family: "Monsterrat", sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .container {
+    @apply mx-auto;
+    @apply px-2.5;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  a,
+  button,
+  label,
+  input,
+  textarea,
+  select,
+  svg * {
+    transition-duration: var(--transition-duration);
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--color-light);
+    outline-offset: 4px;
+    transition-duration: 0s !important;
+  }
+
+  :where([fill]:not([fill="none"], [fill^="url"])) {
+    fill: currentColor;
+  }
+
+  :where([stroke]:not([stroke="none"], [stroke^="url"])) {
+    stroke: currentColor;
+  }
+
+  svg * {
+    transition-property: fill, stroke;
+  }
+
+  .categories-item {
+    @apply cursor-pointer;
+    @apply hover:text-(--color-accent-dark);
+    @apply duration-200;
+    @apply font-medium;
+    @apply text-(--color-gray-1);
+    @apply text-sm;
+    @apply w-fit;
+  }
+}
