@@ -7,6 +7,7 @@ export type ProductItemType = {
   description: string;
   category: CategoryType;
   images: string[];
+  sizes?: number[];
   creationAt: string;
   updatedAt: string;
 };

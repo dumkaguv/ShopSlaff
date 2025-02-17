@@ -2,15 +2,21 @@ import React from "react";
 
 import ProductItemType from "@/types/ProductItemType";
 import { fetchProducts } from "@/store/products/asyncActions";
-import { RootState, useAppDispatch } from "@/store/store";
-import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/store/store";
 import Button from "@/components/Button";
 import { Link } from "react-router-dom";
 import parseImages from "@/utils/parseImages";
 import ROUTES from "@/constants/routes";
 
-const ProductList: React.FC = () => {
-  const products = useSelector((state: RootState) => state.products.data);
+interface ProductListProps {
+  products?: ProductItemType[];
+  title?: string;
+}
+
+const ProductList: React.FC<ProductListProps> = ({
+  products = [],
+  title = "Products",
+}) => {
   const dispatch = useAppDispatch();
   const [offset, setOffset] = React.useState(0);
 
@@ -22,6 +28,10 @@ const ProductList: React.FC = () => {
     setOffset((prev) => prev + 5);
   };
 
+  const onLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const productsToDisplay: ProductItemType[] = [];
   productsToDisplay.push(...products.slice(0, offset + 5));
 
@@ -29,17 +39,24 @@ const ProductList: React.FC = () => {
     <section className="container mt-5">
       <div className="rounded-md bg-(--color-dark) p-6">
         <h2 className="text-center text-[20px] font-semibold text-white">
-          Trending
+          {title}
         </h2>
-        <ul className="mt-6 grid grid-cols-5 gap-x-5">
+        <ul className="mt-6 grid grid-cols-5 gap-5">
           {productsToDisplay.map((product: ProductItemType) => (
             <li key={`${product.id}-${product.title}`}>
-              <Link to={ROUTES.PRODUCT.replace(":id", product.id.toString())}>
+              <Link
+                onClick={onLinkClick}
+                to={ROUTES.PRODUCT.replace(":id", product.id.toString())}
+              >
                 <img
                   className="h-[200px] w-[230px] rounded-t-lg object-cover"
                   width={230}
                   height={200}
-                  src={parseImages(product.images)[0]}
+                  src={
+                    product.images[0].includes("[")
+                      ? parseImages(product.images)[0]
+                      : product.images[0]
+                  }
                   alt=""
                   loading="lazy"
                 />
@@ -60,7 +77,12 @@ const ProductList: React.FC = () => {
                       ${(product.price * 0.8).toFixed(0)}
                     </span>
                   </div>
-                  <Button>Buy</Button>
+                  <Button
+                    asLink
+                    href={ROUTES.PRODUCT.replace(":id", product.id.toString())}
+                  >
+                    Buy
+                  </Button>
                 </div>
               </div>
             </li>

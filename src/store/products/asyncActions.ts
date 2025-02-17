@@ -17,3 +17,31 @@ export const fetchProducts = createAsyncThunk<
     return rejectWithValue(`Ошибка загрузки продуктов - ${error}`);
   }
 });
+
+export const fetchProductById = createAsyncThunk<
+  ProductItemType,
+  string | undefined
+>("products/fetchProductById", async (id = "", { rejectWithValue }) => {
+  try {
+    const BASE_URL = `${ENDPOINTS.products}/${id}`;
+    const { data: product } = await axios.get<ProductItemType>(BASE_URL);
+
+    return product;
+  } catch (error) {
+    return rejectWithValue(`Ошибка загрузки продуктов - ${error}`);
+  }
+});
+
+export const fetchProductsByCategoryId = createAsyncThunk<
+  ProductItemType[],
+  string | undefined
+>("products/fetchProductsByCategoryId", async (categoryId = "1", { rejectWithValue }) => {
+  try {
+    const BASE_URL = `${ENDPOINTS.products}/?categoryId=${categoryId}`;
+    const { data: product } = await axios.get<ProductItemType[]>(BASE_URL);
+
+    return product;
+  } catch (error) {
+    return rejectWithValue(`Ошибка загрузки продуктов - ${error}`);
+  }
+});

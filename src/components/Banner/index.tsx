@@ -1,10 +1,11 @@
 import React from "react";
+
 import Button from "@/components/Button";
 
-const Banner: React.FC = () => {
+const Banner = () => {
   return (
-    <div className="relative flex h-[425px] w-full flex-col rounded-[6px] bg-(--color-dark) pl-9">
-      <h2 className="text-[120px] h-[145px] font-black text-(--bg-color) uppercase">
+    <div className="pl-9">
+      <h2 className="h-[145px] text-[120px] font-black text-(--bg-color) uppercase">
         BIG SALE 20%
       </h2>
       <div className="grid gap-y-2 pl-2">
@@ -15,7 +16,9 @@ const Banner: React.FC = () => {
           LENNON r2d2 <br /> with NVIDIA 5090 TI
         </h3>
       </div>
-      <Button variant="secondary" className="mt-6 ml-2">Shop Now</Button>
+      <Button variant="secondary" className="mt-6 ml-2">
+        Shop Now
+      </Button>
       <img
         src="/public/images/hero.png"
         alt="banner"

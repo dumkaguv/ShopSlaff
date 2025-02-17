@@ -67,6 +67,14 @@
     transition-property: fill, stroke;
   }
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .categories-item {
     @apply cursor-pointer;
     @apply hover:text-(--color-accent-dark);

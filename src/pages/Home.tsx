@@ -1,15 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
 import ProductList from "@/components/ProductList";
+import Hero from "@/components/Hero";
+import { RootState } from "@/store/store";
 
 const Home: React.FC = () => {
+  const products = useSelector((state: RootState) => state.products.data);
+  
   return (
-    <main>
+    <>
       <Hero />
-      <ProductList />
-    </main>
+      <ProductList products={products} title="Trending" />
+    </>
   );
 };
 
