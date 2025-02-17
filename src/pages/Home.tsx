@@ -6,14 +6,10 @@ import ProductList from "@/components/ProductList";
 
 const Home: React.FC = () => {
   return (
-    <>
-      <Header />
-      
-      <main>
-        <Hero />
-        <ProductList />
-      </main>
-    </>
+    <main>
+      <Hero />
+      <ProductList />
+    </main>
   );
 };
 

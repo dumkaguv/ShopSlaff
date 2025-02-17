@@ -5,13 +5,19 @@ import "./assets/styles/App.css";
 import Home from "@/pages/Home";
 
 import { store } from "./store/store";
+import ROUTES from "./constants/routes";
+import Product from "./pages/Product";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   return (
     <Router>
       <Provider store={store}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path={ROUTES.HOME} element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path={ROUTES.PRODUCT} element={<Product />} />
+          </Route>
         </Routes>
       </Provider>
     </Router>

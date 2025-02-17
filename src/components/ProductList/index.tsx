@@ -6,6 +6,8 @@ import { RootState, useAppDispatch } from "@/store/store";
 import { useSelector } from "react-redux";
 import Button from "@/components/Button";
 import { Link } from "react-router-dom";
+import parseImages from "@/utils/parseImages";
+import ROUTES from "@/constants/routes";
 
 const ProductList: React.FC = () => {
   const products = useSelector((state: RootState) => state.products.data);
@@ -23,8 +25,6 @@ const ProductList: React.FC = () => {
   const productsToDisplay: ProductItemType[] = [];
   productsToDisplay.push(...products.slice(0, offset + 5));
 
-  console.log(products);
-
   return (
     <section className="container mt-5">
       <div className="rounded-md bg-(--color-dark) p-6">
@@ -34,12 +34,12 @@ const ProductList: React.FC = () => {
         <ul className="mt-6 grid grid-cols-5 gap-x-5">
           {productsToDisplay.map((product: ProductItemType) => (
             <li key={`${product.id}-${product.title}`}>
-              <Link to={"/"}>
+              <Link to={ROUTES.PRODUCT.replace(":id", product.id.toString())}>
                 <img
                   className="h-[200px] w-[230px] rounded-t-lg object-cover"
                   width={230}
-                  height={110}
-                  src={product.images[0]}
+                  height={200}
+                  src={parseImages(product.images)[0]}
                   alt=""
                   loading="lazy"
                 />
@@ -60,7 +60,7 @@ const ProductList: React.FC = () => {
                       ${(product.price * 0.8).toFixed(0)}
                     </span>
                   </div>
-                  <Button>Buy now</Button>
+                  <Button>Buy</Button>
                 </div>
               </div>
             </li>
