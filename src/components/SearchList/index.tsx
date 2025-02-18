@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import parseImages from "@/utils/parseImages";
 import { selectProductsBySearch } from "@/store/products/select";
 import ROUTES from "@/constants/routes";
+import parseRoute from "@/utils/parseRoute";
 
 interface SearchListProps {
   searchValue: string;
@@ -40,7 +41,11 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
         >
           <Link
             className="flex items-center gap-2"
-            to={ROUTES.PRODUCT.replace(":id", product.id.toString())}
+            to={parseRoute(
+              ROUTES.PRODUCT,
+              "id",
+              product.id.toString(),
+            )}
             onClick={onLinkClick}
           >
             <img
@@ -49,7 +54,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
               height={60}
               src={
                 product.images[0].includes("[")
-                  ? parseImages(product.images)[0]
+                  ? parseImages(product.images)?.[0]
                   : product.images[0]
               }
               alt=""

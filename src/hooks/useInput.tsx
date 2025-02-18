@@ -25,7 +25,7 @@ const useInput = (initialValue = "") => {
     setShowIconClear(false);
   }
 
-  return { inputValue, onInputChange, onIconClearClick, showIconClear, clearInput };
+  return { inputValue, setInputValue, onInputChange, onIconClearClick, showIconClear, clearInput };
 };
 
 export default useInput;

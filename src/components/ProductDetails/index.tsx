@@ -6,7 +6,7 @@ import { fetchProductById } from "@/store/products/asyncActions";
 import { selectProductById } from "@/store/products/select";
 import parseImages from "@/utils/parseImages";
 import { SIZES } from "@/constants/sizes";
-import Button from "../Button";
+import Button from "@/components/Button";
 
 interface ProductDetailsProps {
   productId: string;
@@ -45,12 +45,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     setCurrentSelectedSizeIndex(index);
   };
 
+  console.log(product)
+
   return (
     <div className="flex p-5">
       <img
         src={
           product.images[currentSelectedImageIndex].includes("[")
-            ? parseImages([product.images[currentSelectedImageIndex]])[0]
+            ? parseImages([product.images[currentSelectedImageIndex]])?.[0]
             : product.images[currentSelectedImageIndex]
         }
         className="h-[380px] w-[380px] rounded-lg"
@@ -62,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
         {product.images.map((image, index) => (
           <li key={index}>
             <img
-              src={image.includes("[") ? parseImages([image])[0] : image}
+              src={image.includes("[") ? parseImages([image])?.[0] : image}
               className={`ml-4.5 min-h-[91px] min-w-[91px] rounded-lg ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
               onClick={() => onImageClick(index)}
               width={91}
@@ -74,7 +76,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
       </ul>
       <div className="ml-8 flex flex-col">
         <h3 className="text-lg">{product.title}</h3>
-        <span className="mt-2.5 text-xl font-bold">${product.price}</span>
+        <span className="mt-2.5 text-xl font-bold">${(product.price * 0.8).toFixed(0)}</span>
         {(isShoesCategory || isClothesCategory) && (
           <div className="mt-5 flex items-center gap-x-4 text-sm text-(--color-gray-1)">
             <span>Sizes:</span>

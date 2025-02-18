@@ -6,11 +6,16 @@ import IconClose from "/public/svg/icon-close.svg?react";
 import SearchList from "@/components/SearchList";
 
 const Search: React.FC = () => {
-  const { inputValue, onInputChange, onIconClearClick, showIconClear, clearInput } =
-    useInput("");
+  const {
+    inputValue,
+    onInputChange,
+    onIconClearClick,
+    showIconClear,
+    clearInput,
+  } = useInput("");
 
   return (
-    <div className="max-w-[450px] relative rounded-t-md bg-(--bg-color)">
+    <div className="relative max-w-[450px] rounded-t-md bg-(--bg-color)">
       <IconSearch className="pointer-events-none absolute top-5 left-1 -translate-y-[50%] translate-x-[50%]" />
       <input
         onChange={(event) => onInputChange(event)}
