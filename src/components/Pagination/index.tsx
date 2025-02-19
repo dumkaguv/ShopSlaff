@@ -19,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({
     return null;
   }
 
-  const isOutOfBounds = (currentPage: number, nextPage: number) => {
+  const isOutOfBounds = (nextPage: number) => {
     if (nextPage > totalPages || nextPage < 1) {
       return true;
     }
@@ -28,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const onChangePageClick = (currentPage: number, nextPage: number) => {
-    if (isOutOfBounds(currentPage, nextPage)) {
+    if (isOutOfBounds(nextPage)) {
       return;
     }
 

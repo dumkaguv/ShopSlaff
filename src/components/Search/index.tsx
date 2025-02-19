@@ -5,7 +5,11 @@ import IconSearch from "/public/svg/icon-search.svg?react";
 import IconClose from "/public/svg/icon-close.svg?react";
 import SearchList from "@/components/SearchList";
 
-const Search: React.FC = () => {
+interface SearchProps {
+  className?: string;
+}
+
+const Search: React.FC<SearchProps> = ({className}) => {
   const {
     inputValue,
     onInputChange,
@@ -15,12 +19,12 @@ const Search: React.FC = () => {
   } = useInput("");
 
   return (
-    <div className="relative max-w-[450px] rounded-t-md bg-(--bg-color)">
+    <div className={`relative w-fit rounded-t-md bg-(--bg-color)`}>
       <IconSearch className="pointer-events-none absolute top-5 left-1 -translate-y-[50%] translate-x-[50%]" />
       <input
         onChange={(event) => onInputChange(event)}
         type="search"
-        className="relative w-[450px] px-[10px] py-[7px] pl-8"
+        className={`relative w-[450px] px-[10px] py-[7px] pl-8 ${className}`}
         placeholder="Search for anything..."
         value={inputValue}
       />

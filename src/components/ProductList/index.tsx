@@ -5,7 +5,7 @@ import { fetchProducts } from "@/store/products/asyncActions";
 import { useAppDispatch } from "@/store/store";
 import Button from "@/components/Button";
 import Product from "@/components/Product";
-import Pagination from "../Pagination";
+import Pagination from "@/components/Pagination";
 
 interface ProductListProps {
   products?: ProductItemType[];
@@ -26,8 +26,8 @@ const ProductList: React.FC<ProductListProps> = ({
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   React.useEffect(() => {
-    setCurrentPage(1)
-  }, [products])
+    setCurrentPage(1);
+  }, [products]);
 
   React.useEffect(() => {
     dispatch(fetchProducts());
@@ -78,16 +78,15 @@ const ProductList: React.FC<ProductListProps> = ({
             </Button>
           )}
 
-        {paginationType === "pagination" &&
-          products.length > itemsPerPage && (
-            <Pagination
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-              className="mt-6"
-              position="center"
-            />
-          )}
+        {paginationType === "pagination" && products.length > itemsPerPage && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+            className="mt-6"
+            position="center"
+          />
+        )}
       </div>
     </section>
   );

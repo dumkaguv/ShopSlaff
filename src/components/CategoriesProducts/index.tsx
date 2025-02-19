@@ -5,7 +5,7 @@ import { selectProductsByCategoryId } from "@/store/products/select";
 import { useParams } from "react-router-dom";
 import Hero from "@/components/Hero";
 import { selectCategoryNameById } from "@/store/categories/select";
-import ProductList from "../ProductList";
+import ProductList from "@/components/ProductList";
 
 const CategoriesProducts: React.FC = () => {
   const { id: categoryId } = useParams();
