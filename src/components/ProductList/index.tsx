@@ -5,18 +5,25 @@ import { fetchProducts } from "@/store/products/asyncActions";
 import { useAppDispatch } from "@/store/store";
 import Button from "@/components/Button";
 import Product from "@/components/Product";
+import Pagination from "../Pagination";
 
 interface ProductListProps {
   products?: ProductItemType[];
   title?: string;
+  paginationType?: "button" | "pagination";
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   products = [],
   title = "Products",
+  paginationType = "button",
 }) => {
   const dispatch = useAppDispatch();
   const [offset, setOffset] = React.useState(0);
+
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   React.useEffect(() => {
     dispatch(fetchProducts());
@@ -27,7 +34,19 @@ const ProductList: React.FC<ProductListProps> = ({
   };
 
   const productsToDisplay: ProductItemType[] = [];
-  productsToDisplay.push(...products.slice(0, offset + 5));
+
+  if (paginationType === "button") {
+    productsToDisplay.push(...products.slice(0, offset + 5));
+  } else {
+    productsToDisplay.push(
+      ...products.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage,
+      ),
+    );
+  }
+
+  console.log(products);
 
   return (
     <section className="container mt-5">
@@ -36,15 +55,22 @@ const ProductList: React.FC<ProductListProps> = ({
           {title}
         </h2>
         <ul className="mt-6 grid grid-cols-5 gap-5">
-          {productsToDisplay.map((product: ProductItemType) => (
-            <Product product={product} />
+          {productsToDisplay.map((product: ProductItemType, index: number) => (
+            <Product
+              key={`${title}-${product.id ?? index}`}
+              product={product}
+            />
           ))}
         </ul>
-        {productsToDisplay.length < products.length && (
-          <Button onClick={onLoadMoreClick} className="mx-auto mt-6">
-            See more
-          </Button>
-        )}
+
+        {paginationType === "button" &&
+          productsToDisplay.length < products.length && (
+            <Button onClick={onLoadMoreClick} className="mx-auto mt-6">
+              See more
+            </Button>
+          )}
+
+        {paginationType === "pagination" && <Pagination />}
       </div>
     </section>
   );

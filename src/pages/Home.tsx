@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   const productsTrending = useSelector(
     (state: RootState) => state.products.data,
   );
-  const productsLess = useSelector(selectProductsLessThanPrice(150));
+  const productsLess = useSelector(selectProductsLessThanPrice(80));
 
   return (
     <>
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
       <ProductList products={productsTrending} title="Trending" />
       <CategoriesProductList />
       <SpecialOfferBanner />
-      <ProductList products={productsLess} title="Less than 150$" />
+      <ProductList products={productsLess} title="Less than 80$" />
     </>
   );
 };

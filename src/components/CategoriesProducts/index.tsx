@@ -20,7 +20,11 @@ const CategoriesProducts: React.FC = () => {
     <>
       <Hero />
 
-      <ProductList products={products} title={categoryName} />
+      <ProductList
+        products={products}
+        title={categoryName}
+        paginationType="pagination"
+      />
     </>
   );
 };

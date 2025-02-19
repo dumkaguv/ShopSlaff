@@ -17,7 +17,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   };
 
   return (
-    <li key={`${product.id}-${product.title}`}>
+    <li>
       <Link
         onClick={onLinkClick}
         to={parseRoute(ROUTES.PRODUCT, "id", product.id.toString())}

@@ -70,6 +70,7 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -83,5 +84,28 @@
     @apply text-(--color-gray-1);
     @apply text-sm;
     @apply w-fit;
+  }
+
+  .pagination-button {
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply gap-2.5;
+    @apply aspect-[1];
+    @apply rounded-lg;
+    @apply w-[40px];
+    @apply bg-(--bg-color);
+    @apply text-(--color-gray-1);
+
+    @apply transition-all;
+    @apply hover:bg-(--color-accent-light);
+    @apply hover:text-white;
+  }
+
+  .pagination-button.is-active {
+    @apply text-(--color-light);
+    @apply bg-(--color-accent-dark);
+
+    @apply cursor-not-allowed;
   }
 }
