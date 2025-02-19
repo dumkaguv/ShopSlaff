@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { RootState, useAppDispatch } from "@/store/store";
 import { fetchCategories } from "@/store/categories/asyncActions";
@@ -9,6 +9,7 @@ import ROUTES from "@/constants/routes";
 import parseRoute from "@/utils/parseRoute";
 
 const Categories: React.FC = () => {
+  const { id: categoryId } = useParams();
   const categories = useSelector((state: RootState) => state.categories.data);
   const dispatch = useAppDispatch();
 
@@ -16,13 +17,14 @@ const Categories: React.FC = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  console.log(categoryId)
   return (
     <div className="w-[300px] rounded-[6px] bg-(--color-dark)">
       <div className="p-6 font-semibold">
         <h2>Categories</h2>
         <ul className="font- mt-8 grid gap-y-3">
-          {categories.slice(0, 5).map((category: CategoryType) => (
-            <li key={category.id} className="categories-item">
+          {categories.slice(0, 5).map((category: CategoryType, index: number) => (
+            <li key={category.id} className={`categories-item ${Number(categoryId) === index + 1 ? "is-active" : ""}`}>
               <Link
                 to={parseRoute(ROUTES.CATEGORIES, "id", category.id.toString())}
               >

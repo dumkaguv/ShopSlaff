@@ -26,11 +26,19 @@ const ProductList: React.FC<ProductListProps> = ({
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   React.useEffect(() => {
+    setCurrentPage(1)
+  }, [products])
+
+  React.useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   const onLoadMoreClick = () => {
     setOffset((prev) => prev + 5);
+  };
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   const productsToDisplay: ProductItemType[] = [];
@@ -70,7 +78,16 @@ const ProductList: React.FC<ProductListProps> = ({
             </Button>
           )}
 
-        {paginationType === "pagination" && <Pagination />}
+        {paginationType === "pagination" &&
+          products.length > itemsPerPage && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+              className="mt-6"
+              position="center"
+            />
+          )}
       </div>
     </section>
   );

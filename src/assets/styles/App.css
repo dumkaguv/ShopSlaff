@@ -86,6 +86,10 @@
     @apply w-fit;
   }
 
+  .categories-item.is-active {
+    @apply text-(--color-accent-dark);
+  }
+
   .pagination-button {
     @apply flex;
     @apply items-center;
