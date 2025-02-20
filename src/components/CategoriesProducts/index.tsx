@@ -24,6 +24,7 @@ const CategoriesProducts: React.FC = () => {
         products={products}
         title={categoryName}
         paginationType="pagination"
+        showFilters
       />
     </>
   );

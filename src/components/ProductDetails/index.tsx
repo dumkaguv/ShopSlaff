@@ -7,6 +7,8 @@ import { selectProductById } from "@/store/products/select";
 import parseImages from "@/utils/parseImages";
 import { SIZES } from "@/constants/sizes";
 import Button from "@/components/Button";
+import { addItem } from "@/store/cart/slice";
+import { selectItem } from "@/store/cart/select";
 
 interface ProductDetailsProps {
   productId: string;
@@ -19,6 +21,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     React.useState(0);
   const [currentSelectedSizeIndex, setCurrentSelectedSizeIndex] =
     React.useState(0);
+  const quantityCart = useSelector(selectItem(+productId))?.quantity || 0;
 
   React.useEffect(() => {
     if (!product) {
@@ -45,7 +48,17 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     setCurrentSelectedSizeIndex(index);
   };
 
-  console.log(product)
+  const onAddToCartButtonClick = () => {
+    dispatch(
+      addItem({
+        ...product,
+        size: parseFloat(SIZES[currentSelectedSizeIndex]),
+        quantity: 1,
+      }),
+    );
+  };
+
+  console.log(product);
 
   return (
     <div className="flex p-5">
@@ -60,9 +73,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
         height={380}
         alt=""
       />
-      <ul className="flex flex-col gap-y-1">
+      <ul className="flex flex-col gap-y-1 ">
         {product.images.map((image, index) => (
-          <li key={index}>
+          <li key={index} className="transition-all hover:scale-[1.025]">
             <img
               src={image.includes("[") ? parseImages([image])?.[0] : image}
               className={`ml-4.5 min-h-[91px] min-w-[91px] rounded-lg ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
@@ -76,7 +89,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
       </ul>
       <div className="ml-8 flex flex-col">
         <h3 className="text-lg">{product.title}</h3>
-        <span className="mt-2.5 text-xl font-bold">${(product.price * 0.8).toFixed(0)}</span>
+        <span className="mt-2.5 text-xl font-bold">
+          ${(product.price * 0.8).toFixed(0)}
+        </span>
         {(isShoesCategory || isClothesCategory) && (
           <div className="mt-5 flex items-center gap-x-4 text-sm text-(--color-gray-1)">
             <span>Sizes:</span>
@@ -102,7 +117,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
           {product.description}
         </div>
         <div className="mt-5 flex gap-x-2.5">
-          <Button>Add to cart</Button>
+          <Button onClick={onAddToCartButtonClick}>
+            Add to cart {quantityCart > 0 ? `(${quantityCart})` : ""}
+          </Button>
           <Button variant="gray">Add to favorites</Button>
         </div>
       </div>

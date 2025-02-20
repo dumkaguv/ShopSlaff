@@ -8,7 +8,7 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ children, ...props }) => {
   return (
     <div
       {...props}
-      className="relative flex h-[425px] w-full flex-col rounded-[6px] bg-(--color-dark)"
+      className="relative flex min-h-[425px] w-full flex-col rounded-[6px] bg-(--color-dark)"
     >
       {children}
     </div>

@@ -9,6 +9,8 @@ import ROUTES from "./constants/routes";
 import Product from "./pages/Product";
 import MainLayout from "./components/MainLayout";
 import CategoriesProducts from "./components/CategoriesProducts";
+import Cart from "./pages/Cart";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path={ROUTES.PRODUCT} element={<Product />} />
             <Route path={ROUTES.CATEGORIES} element={<CategoriesProducts />} />
+            <Route path={ROUTES.CART} element={<Cart />} />
+            <Route path={ROUTES.FAVORITES} element={<Favorites />} />
           </Route>
         </Routes>
       </Provider>

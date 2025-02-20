@@ -17,7 +17,6 @@ const Categories: React.FC = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  console.log(categoryId)
   return (
     <div className="w-[300px] rounded-[6px] bg-(--color-dark)">
       <div className="p-6 font-semibold">

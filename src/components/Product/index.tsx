@@ -17,7 +17,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   };
 
   return (
-    <li>
+    <li className="transition-all hover:scale-[1.03]">
       <Link
         onClick={onLinkClick}
         to={parseRoute(ROUTES.PRODUCT, "id", product.id.toString())}

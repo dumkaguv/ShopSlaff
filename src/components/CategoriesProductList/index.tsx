@@ -21,7 +21,10 @@ const CategoriesProductList: React.FC = () => {
         </h2>
         <ul className="mt-5 grid grid-cols-5 gap-x-5">
           {categories.slice(0, 5).map((category, index) => (
-            <li key={index} className="grid cursor-pointer gap-y-5">
+            <li
+              key={index}
+              className="grid cursor-pointer gap-y-5 transition-all hover:scale-[1.03]"
+            >
               <Link
                 className="text-center"
                 onClick={onLinkClick}

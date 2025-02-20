@@ -61,7 +61,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
             />
             <div className="w-[270px]">{product.title}</div>
             <span className="ml-auto text-(--color-accent-dark)">
-              ${product.price}
+              ${(product.price * 0.8).toFixed(0)}
             </span>
           </Link>
         </li>

@@ -1,8 +1,10 @@
 import React from "react";
 
 import Button from "@/components/Button";
+import ROUTES from "@/constants/routes";
+import parseRoute from "@/utils/parseRoute";
 
-const Banner = () => {
+const Banner: React.FC = () => {
   return (
     <div className="pl-9">
       <h2 className="h-[145px] text-[120px] font-black text-(--bg-color) uppercase">
@@ -16,7 +18,7 @@ const Banner = () => {
           LENNON r2d2 <br /> with NVIDIA 5090 TI
         </h3>
       </div>
-      <Button variant="secondary" className="mt-6 ml-2">
+      <Button asLink href={parseRoute(ROUTES.CATEGORIES, "id", "2")} variant="secondary" className="mt-6 ml-2">
         Shop Now
       </Button>
       <img
