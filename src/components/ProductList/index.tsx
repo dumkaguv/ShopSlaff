@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import Product from "@/components/Product";
 import Pagination from "@/components/Pagination";
 import ProductListInputFilter from "../ProductListInputFilter";
+import useWindowWidth from "@/hooks/useWindowWidth";
 
 interface ProductListProps {
   products?: ProductItemType[];
@@ -15,6 +16,15 @@ interface ProductListProps {
   showFilters?: boolean;
 }
 
+const OFFSETS = {
+  "100": 3,
+  "480": 4,
+  "640": 4,
+  "768": 3,
+  "1024": 4,
+  "1280": 5,
+};
+
 const ProductList: React.FC<ProductListProps> = ({
   products = [],
   title = "Products",
@@ -22,6 +32,7 @@ const ProductList: React.FC<ProductListProps> = ({
   showFilters = false,
 }) => {
   const dispatch = useAppDispatch();
+  const [limit, setLimit] = React.useState(OFFSETS[1280]);
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState("");
   const [priceFrom, setPriceFrom] = React.useState("");
@@ -31,6 +42,22 @@ const ProductList: React.FC<ProductListProps> = ({
   const itemsPerPage = 10;
 
   let productsToDisplay: ProductItemType[] = [];
+  const width = useWindowWidth();
+
+  React.useEffect(() => {
+    const breakpoints = Object.keys(OFFSETS).sort(
+      (a, b) => Number(b) - Number(a),
+    );
+
+    for (const breakpoint of breakpoints) {
+      if (width > Number(breakpoint)) {
+        setLimit(OFFSETS[breakpoint]);
+        break;
+      } else {
+        continue;
+      }
+    }
+  }, [width]);
 
   React.useEffect(() => {
     if (search || priceFrom) {
@@ -51,7 +78,7 @@ const ProductList: React.FC<ProductListProps> = ({
   }, [dispatch]);
 
   const onLoadMoreClick = () => {
-    setOffset((prev) => prev + 5);
+    setOffset((prev) => prev + limit);
   };
 
   const onPageChange = (page: number) => {
@@ -59,7 +86,7 @@ const ProductList: React.FC<ProductListProps> = ({
   };
 
   if (paginationType === "button") {
-    productsToDisplay.push(...products.slice(0, offset + 5));
+    productsToDisplay.push(...products.slice(0, offset + limit));
   } else {
     productsToDisplay.push(
       ...products.slice(
@@ -79,6 +106,7 @@ const ProductList: React.FC<ProductListProps> = ({
   }
 
   console.log(products);
+  console.log(width);
 
   return (
     <section className="container mt-5">
@@ -101,7 +129,9 @@ const ProductList: React.FC<ProductListProps> = ({
             />
           </div>
         )}
-        <ul className="mt-6 grid grid-cols-5 gap-5 max-2xl:grid-cols-4">
+        <ul
+          className={`max-xs:flex max-xs:flex-col mt-6 grid grid-cols-5 gap-5 max-xl:grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2`}
+        >
           {productsToDisplay.map((product: ProductItemType, index: number) => (
             <Product
               key={`${title}-${product.id ?? index}`}

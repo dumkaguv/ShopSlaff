@@ -23,7 +23,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         to={parseRoute(ROUTES.PRODUCT, "id", product.id.toString())}
       >
         <img
-          className="h-[200px] w-[230px] rounded-t-lg object-cover"
+          className="min-h-[200px] w-full rounded-t-lg object-cover"
           width={230}
           height={200}
           src={

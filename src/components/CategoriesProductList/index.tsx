@@ -32,7 +32,7 @@ const CategoriesProductList: React.FC = () => {
               >
                 <img
                   src={category.image}
-                  className="h-[230px] w-[230px] rounded-sm"
+                  className="h-[250px] w-full rounded-sm"
                   width={230}
                   height={230}
                   alt=""
