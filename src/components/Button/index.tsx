@@ -28,7 +28,7 @@ const Button: FC<ButtonProps> = ({
     gray: "bg-(--color-gray-1) text-(--color-gray-3) hover:bg-(--color-light) hover:text-(--color-black)",
   };
   const sizeStyles = {
-    sm: "text-[14px]",
+    sm: "text-[14px] px-[8px] py-[7px]",
     md: "text-[15px] px-[20px] py-[9px] h-[38px]",
     lg: "text-[16px]",
   };

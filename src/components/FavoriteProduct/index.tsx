@@ -1,17 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import ROUTES from "@/constants/routes";
 import parseRoute from "@/utils/parseRoute";
 import parseImages from "@/utils/parseImages";
-import ROUTES from "@/constants/routes";
-import Button from "@/components/Button";
 import ProductItemType from "@/types/ProductItemType";
+import Button from "../Button";
+import { useAppDispatch } from "@/store/store";
+import { removeItem } from "@/store/favorites/slice";
 
-interface ProductProps {
+interface Props {
   product: ProductItemType;
 }
 
-const Product: React.FC<ProductProps> = ({ product }) => {
+const FavoriteProduct: React.FC<Props> = ({ product }) => {
+  const dispatch = useAppDispatch();
+
+  const onFavoriteButtonClick = () => {
+    dispatch(removeItem(product.id));
+  };
+
   const onLinkClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -23,7 +31,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         to={parseRoute(ROUTES.PRODUCT, "id", product.id.toString())}
       >
         <img
-          className="min-h-[200px] h-[250px] w-full rounded-t-lg object-cover max-xs:max-h-[270px] "
+          className="max-xs:max-h-[270px] h-[250px] min-h-[200px] w-full rounded-t-lg object-cover"
           width={230}
           height={200}
           src={
@@ -52,10 +60,12 @@ const Product: React.FC<ProductProps> = ({ product }) => {
             </span>
           </div>
           <Button
-            asLink
-            href={parseRoute(ROUTES.PRODUCT, "id", product.id.toString())}
+            variant="gray"
+            onClick={onFavoriteButtonClick}
+            className="max-md:w-[50%]"
+            size="sm"
           >
-            Buy
+            ★ Remove
           </Button>
         </div>
       </div>
@@ -63,4 +73,4 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   );
 };
 
-export default Product;
+export default FavoriteProduct;

@@ -6,9 +6,9 @@ import { RootState } from "@/store/store";
 
 const CartProductList: React.FC = () => {
   const { totalPrice, data } = useSelector((state: RootState) => state.cart);
-  console.log("data", data)
+
   return (
-    <div className="flex flex-1 flex-col px-8 py-6">
+    <div className="flex flex-1 flex-col px-8 py-6 max-md:px-4 max-md:py-3">
       <h2 className="text-[20px] font-semibold text-white">Your cart</h2>
       <ul className="mt-4 grid gap-y-2">
         {data.map((item) => (

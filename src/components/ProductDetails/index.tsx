@@ -9,6 +9,11 @@ import { SIZES } from "@/constants/sizes";
 import Button from "@/components/Button";
 import { addItem } from "@/store/cart/slice";
 import { selectItem } from "@/store/cart/select";
+import {
+  addItem as addItemToFavorites,
+  removeItem,
+} from "@/store/favorites/slice";
+import { selectFavoriteItem } from "@/store/favorites/select";
 
 interface ProductDetailsProps {
   productId: string;
@@ -22,6 +27,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
   const [currentSelectedSizeIndex, setCurrentSelectedSizeIndex] =
     React.useState(0);
   const quantityCart = useSelector(selectItem(+productId))?.quantity || 0;
+  const isFavorite = useSelector(selectFavoriteItem(+productId));
 
   React.useEffect(() => {
     if (!product) {
@@ -48,6 +54,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     setCurrentSelectedSizeIndex(index);
   };
 
+  const onFavoriteButtonClick = () => {
+    if (isFavorite) {
+      dispatch(removeItem(product.id));
+    } else {
+      dispatch(addItemToFavorites(product));
+    }
+  };
+
   const onAddToCartButtonClick = () => {
     dispatch(
       addItem({
@@ -62,24 +76,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
 
   return (
     <div className="p-5 xl:flex">
-      <div className="max-xl:flex xl:contents max-md:flex-col max-md:gap-2">
+      <div className="max-xl:flex max-md:flex-col max-md:gap-2 xl:contents">
         <img
           src={
             product.images[currentSelectedImageIndex].includes("[")
               ? parseImages([product.images[currentSelectedImageIndex]])?.[0]
               : product.images[currentSelectedImageIndex]
           }
-          className="h-[380px] w-[380px] shrink-0 rounded-lg max-md:w-[100%] max-sm:w-[100%] max-sm:h-auto"
+          className="h-[380px] w-[380px] shrink-0 rounded-lg max-md:w-[100%] max-sm:h-auto max-sm:w-[100%]"
           width={380}
           height={380}
           alt=""
         />
-        <ul className="flex md:flex-col gap-y-1 max-md:gap-x-2.5">
-          {product.images.map((image, index) => (
+        <ul className="flex gap-y-1 max-md:gap-x-2.5 md:flex-col">
+          {product.images.map((image: string, index: number) => (
             <li key={index} className="transition-all hover:scale-[1.025]">
               <img
                 src={image.includes("[") ? parseImages([image])?.[0] : image}
-                className={`md:ml-4.5 min-h-[91px] min-w-[91px] max-md:min-w-[80px] flex-wrap rounded-lg ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
+                className={`min-h-[91px] min-w-[91px] flex-wrap rounded-lg max-md:min-w-[80px] md:ml-4.5 ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
                 onClick={() => onImageClick(index)}
                 width={91}
                 height={91}
@@ -122,7 +136,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
           <Button onClick={onAddToCartButtonClick} className="max-md:w-full">
             Add to cart {quantityCart > 0 ? `(${quantityCart})` : ""}
           </Button>
-          <Button variant="gray" className="max-md:w-full">Add to favorites</Button>
+          <Button
+            variant="gray"
+            onClick={onFavoriteButtonClick}
+            className="max-md:w-full"
+          >
+            {!isFavorite ? "☆ Add to favorites" : "★ Remove from favorites"}
+          </Button>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const CartProduct: React.FC<CartProductProps> = ({ item }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 rounded-lg bg-(--bg-color) px-4 py-3 max-lg:grid-cols-1 max-lg:gap-2">
+    <div className="grid grid-cols-2 rounded-lg bg-(--bg-color) px-4 py-3 max-lg:grid-cols-1 max-lg:gap-2 max-md:px-3 max-md:py-2">
       <div className="flex items-center justify-between gap-3.5 max-lg:gap-5">
         <div className="flex items-center">
           <Link to={parseRoute(ROUTES.PRODUCT, "id", item.id.toString())}>
