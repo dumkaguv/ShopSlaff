@@ -6,7 +6,7 @@ import parseRoute from "@/utils/parseRoute";
 
 const Banner: React.FC = () => {
   return (
-    <div className="pl-9 max-xl:pl-7 max-md:pl-4 w-fit">
+    <div className="max-sm:flex max-sm:flex-col pl-9 max-xl:pl-7 max-md:pl-4 w-fit">
       <h2 className="h-[145px] max-sm:hidden text-[120px] font-black text-(--bg-color) uppercase max-xl:text-[85px] max-lg:h-auto max-lg:text-[62px] max-md:text-[45px] max-sm:text-[40px]">
         BIG SALE 20%
       </h2>
@@ -14,7 +14,7 @@ const Banner: React.FC = () => {
         <span className="mt-5 h-[20px] max-md:text-[14px] text-(--color-gray-2) uppercase max-md:mt-7">
           the bestseller of 2022
         </span>
-        <h3 className="w-[480px] text-[42px]/[135%] font-bold uppercase max-xl:text-[32px] max-lg:w-[310px] max-md:text-[22px] max-sm:text-[18px]">
+        <h3 className="w-[480px] text-[42px]/[135%] max-sm:text-[30px] font-bold uppercase max-xl:text-[32px] max-lg:w-[310px] max-md:text-[22px] max-sm:w-fit">
           LENNON r2d2 <br /> with NVIDIA 5090 TI
         </h3>
       </div>
@@ -29,7 +29,7 @@ const Banner: React.FC = () => {
       <img
         src="/public/images/hero.png"
         alt="banner"
-        className="absolute right-8 max-sm:hidden -bottom-5 h-[360px] w-[460px] max-xl:h-auto max-xl:w-[400px] max-lg:w-[300px] max-md:right-4 max-md:-bottom-3 max-md:w-[220px]"
+        className="sm:absolute max-sm:self-end right-8 -bottom-5 h-[360px] w-[460px] max-xl:h-auto max-xl:w-[400px] max-lg:w-[300px] max-md:right-4 max-md:-bottom-3 max-md:w-[220px]"
       />
     </div>
   );

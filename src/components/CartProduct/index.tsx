@@ -23,12 +23,12 @@ const CartProduct: React.FC<CartProductProps> = ({ item }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 rounded-lg bg-(--bg-color) px-4 py-3">
-      <div className="flex items-center justify-between">
+    <div className="grid grid-cols-2 rounded-lg bg-(--bg-color) px-4 py-3 max-lg:grid-cols-1 max-lg:gap-2">
+      <div className="flex items-center justify-between gap-3.5 max-lg:gap-5">
         <div className="flex items-center">
           <Link to={parseRoute(ROUTES.PRODUCT, "id", item.id.toString())}>
             <img
-              className="h-[65px] w-[65px] shrink-0 rounded-md"
+              className="min-h-[65px] min-w-[65px] shrink-0 rounded-md"
               src={item.images[0]}
               width={65}
               height={65}
@@ -45,12 +45,12 @@ const CartProduct: React.FC<CartProductProps> = ({ item }) => {
             </span>
           </div>
         </div>
-        <span className="text-[20px] font-bold text-white">
+        <span className="text-[20px] font-bold text-white max-lg:text-base">
           {(item.price * 0.8).toFixed(0)}$
         </span>
       </div>
       <div className="flex items-center justify-between">
-        <div className="ml-[21%] flex items-center gap-x-5">
+        <div className="flex items-center gap-x-5 max-lg:gap-x-3 lg:ml-[21%]">
           <button
             onClick={() => onChangeQuantity(-1)}
             className={`relative h-[25px] w-[25px] rounded-md bg-(--color-gray-1) transition-all after:absolute after:top-[50%] after:left-[50%] after:h-[3px] after:w-[13px] after:-translate-x-[50%] after:-translate-y-[50%] after:rounded-[30px] after:bg-(--color-gray-3) hover:bg-(--color-gray-2) ${item.quantity === 1 ? "cursor-not-allowed" : ""}`}
@@ -63,8 +63,8 @@ const CartProduct: React.FC<CartProductProps> = ({ item }) => {
             type="button"
           ></button>
         </div>
-        <div className="flex gap-x-11">
-          <span className="text-[22px] font-bold text-(--color-accent-dark)">
+        <div className="flex gap-x-11 max-lg:gap-x-5">
+          <span className="text-[22px] font-bold text-(--color-accent-dark) max-lg:text-lg">
             {Number((item.price * 0.8).toFixed(0)) * (item.quantity ?? 1)}$
           </span>
           <button onClick={onRemoveFromCartClick} type="button">

@@ -21,7 +21,7 @@ const Header: React.FC = () => {
         </h1>
         <Search />
 
-        <div className="flex gap-x-9 max-md:gap-x-4 max-sm:gap-x-2.5">
+        <div className="flex max-sm:flex-col gap-x-9 max-md:gap-x-4 max-sm:gap-2.5">
           <Link to={ROUTES.FAVORITES}>
             <IconHeart className="fill-transparent duration-200 hover:fill-red-500" />
           </Link>

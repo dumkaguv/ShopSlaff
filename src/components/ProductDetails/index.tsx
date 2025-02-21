@@ -61,33 +61,35 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
   console.log(product);
 
   return (
-    <div className="flex p-5">
-      <img
-        src={
-          product.images[currentSelectedImageIndex].includes("[")
-            ? parseImages([product.images[currentSelectedImageIndex]])?.[0]
-            : product.images[currentSelectedImageIndex]
-        }
-        className="h-[380px] w-[380px] rounded-lg"
-        width={380}
-        height={380}
-        alt=""
-      />
-      <ul className="flex flex-col gap-y-1 ">
-        {product.images.map((image, index) => (
-          <li key={index} className="transition-all hover:scale-[1.025]">
-            <img
-              src={image.includes("[") ? parseImages([image])?.[0] : image}
-              className={`ml-4.5 min-h-[91px] min-w-[91px] rounded-lg ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
-              onClick={() => onImageClick(index)}
-              width={91}
-              height={91}
-              alt=""
-            />
-          </li>
-        ))}
-      </ul>
-      <div className="ml-8 flex flex-col">
+    <div className="p-5 xl:flex">
+      <div className="max-xl:flex xl:contents max-md:flex-col max-md:gap-2">
+        <img
+          src={
+            product.images[currentSelectedImageIndex].includes("[")
+              ? parseImages([product.images[currentSelectedImageIndex]])?.[0]
+              : product.images[currentSelectedImageIndex]
+          }
+          className="h-[380px] w-[380px] shrink-0 rounded-lg max-md:w-[100%] max-sm:w-[100%] max-sm:h-auto"
+          width={380}
+          height={380}
+          alt=""
+        />
+        <ul className="flex md:flex-col gap-y-1 max-md:gap-x-2.5">
+          {product.images.map((image, index) => (
+            <li key={index} className="transition-all hover:scale-[1.025]">
+              <img
+                src={image.includes("[") ? parseImages([image])?.[0] : image}
+                className={`md:ml-4.5 min-h-[91px] min-w-[91px] max-md:min-w-[80px] flex-wrap rounded-lg ${index === currentSelectedImageIndex ? "cursor-not-allowed" : "cursor-pointer"}`}
+                onClick={() => onImageClick(index)}
+                width={91}
+                height={91}
+                alt=""
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex flex-col max-xl:mt-5 xl:ml-8">
         <h3 className="text-lg">{product.title}</h3>
         <span className="mt-2.5 text-xl font-bold">
           ${(product.price * 0.8).toFixed(0)}
@@ -116,11 +118,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
         <div className="mt-5 text-sm font-normal text-(--color-gray-3)">
           {product.description}
         </div>
-        <div className="mt-5 flex gap-x-2.5">
-          <Button onClick={onAddToCartButtonClick}>
+        <div className="mt-5 flex gap-2.5 max-md:flex-col">
+          <Button onClick={onAddToCartButtonClick} className="max-md:w-full">
             Add to cart {quantityCart > 0 ? `(${quantityCart})` : ""}
           </Button>
-          <Button variant="gray">Add to favorites</Button>
+          <Button variant="gray" className="max-md:w-full">Add to favorites</Button>
         </div>
       </div>
     </div>

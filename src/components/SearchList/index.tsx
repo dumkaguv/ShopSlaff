@@ -33,7 +33,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
   }
 
   return (
-    <ul className="no-scrollbar absolute z-10 flex max-h-[180px] w-full flex-col gap-2 overflow-y-auto rounded-b-md bg-(--bg-color) p-2.5">
+    <ul className="max-md:text-[13px] max-md:max-h-[240px] no-scrollbar absolute z-10 flex max-h-[180px] w-full flex-col gap-2 overflow-y-auto rounded-b-md bg-(--bg-color) p-2.5">
       {products.slice(0, 15).map((product) => (
         <li
           key={product.id}
@@ -49,7 +49,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
             onClick={onLinkClick}
           >
             <img
-              className="h-[60px] w-[60px] rounded-md"
+              className="h-[60px] w-[60px] rounded-md max-sm:w-[50px] max-sm:h-[50px]"
               width={60}
               height={60}
               src={
@@ -59,7 +59,7 @@ const SearchList: React.FC<SearchListProps> = ({ searchValue, clearInput }) => {
               }
               alt=""
             />
-            <div className="w-[270px]">{product.title}</div>
+            <div className="lg:w-[270px] max-sm:truncate">{product.title}</div>
             <span className="ml-auto text-(--color-accent-dark)">
               ${(product.price * 0.8).toFixed(0)}
             </span>

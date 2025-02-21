@@ -18,19 +18,28 @@ const Categories: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-[300px] max-lg:w-fit rounded-[6px] bg-(--color-dark)">
+    <div className="rounded-[6px] bg-(--color-dark) max-lg:w-fit max-sm:w-full md:w-[300px]">
       <div className="p-6 font-semibold max-md:p-4">
-        <h2>Categories</h2>
-        <ul className="font-bold mt-8 max-lg:mt-6 max-md:mt-5 grid gap-y-3 md-lg:gap-y-2">
-          {categories.slice(0, 5).map((category: CategoryType, index: number) => (
-            <li key={category.id} className={`categories-item ${Number(categoryId) === index + 1 ? "is-active" : ""}`}>
-              <Link
-                to={parseRoute(ROUTES.CATEGORIES, "id", category.id.toString())}
+        <h2 className="max-sm:text-center">Categories</h2>
+        <ul className="md-lg:gap-y-2 mt-8 grid gap-y-3 font-bold max-lg:mt-6 max-md:mt-5 max-sm:flex max-sm:flex-wrap max-sm:items-center max-sm:justify-center max-sm:gap-3">
+          {categories
+            .slice(0, 5)
+            .map((category: CategoryType, index: number) => (
+              <li
+                key={category.id}
+                className={`categories-item ${Number(categoryId) === index + 1 ? "is-active" : ""}`}
               >
-                {category.name}
-              </Link>
-            </li>
-          ))}
+                <Link
+                  to={parseRoute(
+                    ROUTES.CATEGORIES,
+                    "id",
+                    category.id.toString(),
+                  )}
+                >
+                  {category.name}
+                </Link>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

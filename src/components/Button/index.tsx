@@ -19,7 +19,7 @@ const Button: FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    "flex items-center w-fit rounded-[6px] font-semibold transition-all";
+    "flex items-center w-fit rounded-[6px] font-semibold transition-all justify-center";
   const variantStyles = {
     primary:
       "bg-(--color-accent-light) text-white hover:bg-(--color-accent-hover)",
