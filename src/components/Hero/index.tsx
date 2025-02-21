@@ -10,7 +10,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ children }) => {
   return (
-    <section className="flex gap-5 container mt-5">
+    <section className="flex gap-5 container mt-5 max-md:gap-3 max-md:mt-3">
       <Categories />
       <ContentBlock>{children ?? <Banner />}</ContentBlock>
     </section>

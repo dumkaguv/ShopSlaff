@@ -101,7 +101,7 @@ const ProductList: React.FC<ProductListProps> = ({
       product.title.toLowerCase().includes(search.toLowerCase()),
     );
     productsToDisplay = productsToDisplay.filter(
-      (product) => product.price >= Number(priceFrom),
+      (product) => product.price * 0.8 >= Number(priceFrom),
     );
   }
 

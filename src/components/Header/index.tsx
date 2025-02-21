@@ -13,15 +13,15 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-100 container">
-      <div className="flex items-center justify-between bg-(--color-dark) p-3 shadow-lg shadow-neutral-800">
+      <div className="flex items-center gap-x-3 justify-between bg-(--color-dark) p-3 shadow-lg shadow-neutral-800">
         <h1>
-          <Link to={ROUTES.HOME} className="text-3xl">
+          <Link to={ROUTES.HOME} className="text-3xl max-md:text-2xl">
             Shop Slaff
           </Link>
         </h1>
         <Search />
 
-        <div className="flex gap-x-9">
+        <div className="flex gap-x-9 max-md:gap-x-4 max-sm:gap-x-2.5">
           <Link to={ROUTES.FAVORITES}>
             <IconHeart className="fill-transparent duration-200 hover:fill-red-500" />
           </Link>

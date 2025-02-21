@@ -18,10 +18,10 @@ const Categories: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-[300px] rounded-[6px] bg-(--color-dark)">
-      <div className="p-6 font-semibold">
+    <div className="w-[300px] max-lg:w-fit rounded-[6px] bg-(--color-dark)">
+      <div className="p-6 font-semibold max-md:p-4">
         <h2>Categories</h2>
-        <ul className="font- mt-8 grid gap-y-3">
+        <ul className="font-bold mt-8 max-lg:mt-6 max-md:mt-5 grid gap-y-3 md-lg:gap-y-2">
           {categories.slice(0, 5).map((category: CategoryType, index: number) => (
             <li key={category.id} className={`categories-item ${Number(categoryId) === index + 1 ? "is-active" : ""}`}>
               <Link

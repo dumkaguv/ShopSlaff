@@ -9,7 +9,7 @@ interface SearchProps {
   className?: string;
 }
 
-const Search: React.FC<SearchProps> = ({className}) => {
+const Search: React.FC<SearchProps> = ({ className }) => {
   const {
     inputValue,
     onInputChange,
@@ -24,7 +24,7 @@ const Search: React.FC<SearchProps> = ({className}) => {
       <input
         onChange={(event) => onInputChange(event)}
         type="search"
-        className={`relative w-[450px] px-[10px] py-[7px] pl-8 ${className}`}
+        className={`relative w-[450px] px-[10px] py-[7px] pl-8 max-xl:w-[400px] max-lg:w-[300px] max-md:w-[250px] max-sm:w-[200px] ${className}`}
         placeholder="Search for anything..."
         value={inputValue}
       />
