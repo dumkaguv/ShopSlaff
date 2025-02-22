@@ -55,8 +55,9 @@ const ProductList: React.FC<ProductListProps> = ({
     );
 
     for (const breakpoint of breakpoints) {
+      const numericBreakpoint = breakpoint as keyof typeof OFFSETS;
       if (width > Number(breakpoint)) {
-        setLimit(OFFSETS[breakpoint]);
+        setLimit(OFFSETS[numericBreakpoint]);
         break;
       } else {
         continue;
@@ -79,7 +80,7 @@ const ProductList: React.FC<ProductListProps> = ({
   }, [products]);
 
   React.useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(""));
   }, [dispatch]);
 
   const onLoadMoreClick = () => {

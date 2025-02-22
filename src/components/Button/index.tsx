@@ -1,11 +1,16 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import React from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
+  children?: React.ReactNode;
   variant?: "primary" | "secondary" | "gray";
   size?: "sm" | "md" | "lg";
+  className?: string;
+  type?: "button" | "submit" | "reset";
   asLink?: boolean;
   href?: string;
+  onClick?: () => void;
 }
 
 const Button: FC<ButtonProps> = ({
