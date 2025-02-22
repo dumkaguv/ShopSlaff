@@ -72,8 +72,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productId }) => {
     );
   };
 
-  console.log(product);
-
   return (
     <div className="p-5 xl:flex">
       <div className="max-xl:flex max-md:flex-col max-md:gap-2 xl:contents">

@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -6,11 +7,14 @@ import Home from "@/pages/Home";
 
 import { store } from "./store/store";
 import ROUTES from "./constants/routes";
-import Product from "./pages/Product";
 import MainLayout from "./components/MainLayout";
-import CategoriesProducts from "./components/CategoriesProducts";
-import Cart from "./pages/Cart";
-import Favorites from "./pages/Favorites";
+
+const Cart = React.lazy(() => import("./pages/Cart"));
+const Favorites = React.lazy(() => import("./pages/Favorites"));
+const Product = React.lazy(() => import("./pages/Product"));
+const CategoriesProducts = React.lazy(
+  () => import("./pages/CategoriesProducts"),
+);
 
 function App() {
   return (
@@ -19,10 +23,38 @@ function App() {
         <Routes>
           <Route path={ROUTES.HOME} element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path={ROUTES.PRODUCT} element={<Product />} />
-            <Route path={ROUTES.CATEGORIES} element={<CategoriesProducts />} />
-            <Route path={ROUTES.CART} element={<Cart />} />
-            <Route path={ROUTES.FAVORITES} element={<Favorites />} />
+            <Route
+              path={ROUTES.PRODUCT}
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Product />
+                </Suspense>
+              }
+            />
+            <Route
+              path={ROUTES.CATEGORIES}
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <CategoriesProducts />
+                </Suspense>
+              }
+            />
+            <Route
+              path={ROUTES.CART}
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Cart />
+                </Suspense>
+              }
+            />
+            <Route
+              path={ROUTES.FAVORITES}
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Favorites />
+                </Suspense>
+              }
+            />
           </Route>
         </Routes>
       </Provider>
