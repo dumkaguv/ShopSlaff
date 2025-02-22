@@ -8,6 +8,10 @@ import Product from "@/components/Product";
 import Pagination from "@/components/Pagination";
 import ProductListInputFilter from "../ProductListInputFilter";
 import useWindowWidth from "@/hooks/useWindowWidth";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import STATUSES from "@/constants/statuses";
+import ProductSkeleton from "../Product/ProductSkeleton";
 
 interface ProductListProps {
   products?: ProductItemType[];
@@ -32,6 +36,7 @@ const ProductList: React.FC<ProductListProps> = ({
   showFilters = false,
 }) => {
   const dispatch = useAppDispatch();
+  const { status } = useSelector((state: RootState) => state.products);
   const [limit, setLimit] = React.useState(OFFSETS[1280]);
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState("");
@@ -105,9 +110,6 @@ const ProductList: React.FC<ProductListProps> = ({
     );
   }
 
-  console.log(products);
-  console.log(width);
-
   return (
     <section className="container mt-5">
       <div className="rounded-md bg-(--color-dark) p-6">
@@ -132,12 +134,17 @@ const ProductList: React.FC<ProductListProps> = ({
         <ul
           className={`max-xs:flex max-xs:flex-col mt-6 grid grid-cols-5 gap-5 max-xl:grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2`}
         >
-          {productsToDisplay.map((product: ProductItemType, index: number) => (
-            <Product
-              key={`${title}-${product.id ?? index}`}
-              product={product}
-            />
-          ))}
+          {status === STATUSES.SUCCESS &&
+            productsToDisplay.map((product: ProductItemType, index: number) => (
+              <Product
+                key={`${title}-${product.id ?? index}`}
+                product={product}
+              />
+            ))}
+          {status === STATUSES.LOADING &&
+            new Array(limit)
+              .fill(null)
+              .map((_, index) => <ProductSkeleton key={index} />)}
           {productsToDisplay.length === 0 && (priceFrom || search) && (
             <div className="col-span-5 rounded-b-md bg-(--bg-color) p-2.5 text-center">
               Nothing found for your request 😔. Try changing your search
