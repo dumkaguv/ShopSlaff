@@ -1,0 +1,1 @@
+import{i as c,a as o,l as i,j as e,H as n,P as d}from"./index-DEBviD5U.js";const u=t=>a=>{var s;return(s=a.categories.data.find(r=>+r.id==+t))==null?void 0:s.name},l=()=>{const{id:t}=c(),a=o(i(t?+t:0)),s=o(u(t?+t:0));return e.jsxs(e.Fragment,{children:[e.jsx(n,{}),e.jsx(d,{products:a,title:s,paginationType:"pagination",showFilters:!0})]})};export{l as default};

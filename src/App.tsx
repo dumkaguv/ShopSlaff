@@ -26,7 +26,7 @@ function App() {
             <Route
               path={ROUTES.PRODUCT}
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div></div>}>
                   <Product />
                 </Suspense>
               }
@@ -34,7 +34,7 @@ function App() {
             <Route
               path={ROUTES.CATEGORIES}
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div></div>}>
                   <CategoriesProducts />
                 </Suspense>
               }
@@ -42,7 +42,7 @@ function App() {
             <Route
               path={ROUTES.CART}
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div></div>}>
                   <Cart />
                 </Suspense>
               }
@@ -50,7 +50,7 @@ function App() {
             <Route
               path={ROUTES.FAVORITES}
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div></div>}>
                   <Favorites />
                 </Suspense>
               }
