@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# ShowSlaff 🌐
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Previews:
 
-Currently, two official plugins are available:
+Screenshot1:
+![Design preview for the ShowSlaff](./previews/preview1.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Screenshot2:
+![Design preview for the ShowSlaff](./previews/preview2.jpg)
 
-## Expanding the ESLint configuration
+Screenshot3:
+![Design preview for the ShowSlaff](./previews/preview3.jpg)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Screenshot4:
+![Design preview for the ShowSlaff](./previews/preview4.jpg)
 
-- Configure the top-level `parserOptions` property like this:
+Screenshot5:
+![Design preview for the ShowSlaff](./previews/preview5.jpg)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Screenshot6:
+![Design preview for the ShowSlaff](./previews/preview6.jpg)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Screenshot7:
+![Design preview for the ShowSlaff](./previews/preview7.jpg)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Welcome! 👋
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Challenge is to build out this ShowSlaff website.
+
+This project was created using React, tailwindCSS, Vite, Redux Toolkit, TypeScript, React-router-dom.
+
+Link to see the result: [ShowSlaff](shop-slaff.vercel.app)
+
+## Getting Started 🚀
+
+Run the development server:
+1. npm run dev
+2. Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
