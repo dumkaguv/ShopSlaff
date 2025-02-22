@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import ProductItemType from "@/types/ProductItemType";
+import LOCAL_STORAGE from "@/constants/localStorage";
+import { loadFromLocalStorage } from "@/utils/localStorage";
 
 type FavoritesState = {
   data: ProductItemType[];
 };
 
 const initialState: FavoritesState = {
-  data: [],
+  data: loadFromLocalStorage<ProductItemType[]>(LOCAL_STORAGE.FAVORITES) || [],
 };
 
 const favoritesState = createSlice({

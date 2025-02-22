@@ -12,7 +12,7 @@ const Banner: React.FC = () => {
       </h2>
       <div className="grid gap-y-2 pl-2">
         <span className="mt-5 h-[20px] max-md:text-[14px] text-(--color-gray-2) uppercase max-md:mt-7">
-          the bestseller of 2022
+          the bestseller of 2025
         </span>
         <h3 className="w-[480px] text-[42px]/[135%] max-sm:text-[30px] font-bold uppercase max-xl:text-[32px] max-lg:w-[310px] max-md:text-[22px] max-sm:w-fit">
           LENNON r2d2 <br /> with NVIDIA 5090 TI

@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import ProductItemType from "@/types/ProductItemType";
+import { loadFromLocalStorage } from "@/utils/localStorage";
+import LOCAL_STORAGE from "@/constants/localStorage";
 
 type CartState = {
   data: ProductItemType[];
@@ -8,10 +10,17 @@ type CartState = {
   totalPrice: number;
 };
 
+const savedCart =
+  loadFromLocalStorage<ProductItemType[]>(LOCAL_STORAGE.CART) || [];
+
 const initialState: CartState = {
-  data: [],
-  totalItems: 0,
-  totalPrice: 0,
+  data: savedCart,
+  totalItems: savedCart.reduce((acc, item) => acc + (item.quantity ?? 1), 0),
+  totalPrice: savedCart.reduce(
+    (acc, item) =>
+      acc + Number((item.price * 0.8).toFixed(0)) * (item.quantity ?? 1),
+    0,
+  ),
 };
 
 const cartSlice = createSlice({
@@ -36,7 +45,8 @@ const cartSlice = createSlice({
       const item = state.data.find((item) => item.id === id);
 
       if (item) {
-        state.totalPrice -= Number((item.price * 0.8).toFixed(0)) * (item.quantity ?? 1);
+        state.totalPrice -=
+          Number((item.price * 0.8).toFixed(0)) * (item.quantity ?? 1);
         state.totalItems -= item.quantity ?? 0;
         state.data = state.data.filter((element) => element.id !== id);
       }
