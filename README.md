@@ -24,7 +24,7 @@
 
 ## Welcome! 👋
 
-Challenge is to build out this ShowSlaff website.
+Challenge is to build out this ShopSlaff website.
 
 This project was created using React, tailwindCSS, Vite, Redux Toolkit, TypeScript, React-router-dom.
 
